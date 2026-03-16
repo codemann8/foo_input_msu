@@ -1,3 +1,3 @@
 #pragma once
 
-#include "../SDK/foobar2000.h"
+#include <SDK/foobar2000.h>

@@ -30,6 +30,7 @@ input_msu::~input_msu()
 */
 void input_msu::open(service_ptr_t<file> p_filehint, const char *p_path, t_input_open_reason p_reason, abort_callback &p_abort)
 {
+	if (p_reason == input_open_info_write) throw exception_tagging_unsupported();
 	m_File = p_filehint;
 	m_PcmPath.set_string(p_path);
 	input_open_file_helper(m_File, p_path, p_reason, p_abort);

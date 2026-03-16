@@ -5,7 +5,7 @@
 #define __INPUT_MSU_H__
 
 
-class input_msu
+class input_msu : public input_stubs
 {
 private:
 	service_ptr_t<file>		m_File;
@@ -32,12 +32,15 @@ public:
 	void decode_seek(double p_seconds, abort_callback &p_abort);
 	bool decode_can_seek() { return true; }
 
-	t_filestats get_file_stats(abort_callback & p_abort) { return m_File->get_stats(p_abort); }
-	void decode_on_idle(abort_callback & p_abort) { m_File->on_idle(p_abort); }
-	bool decode_get_dynamic_info(file_info &p_out, double &p_timestamp_delta) { return false; }
-	bool decode_get_dynamic_info_track(file_info &p_out, double &p_timestamp_delta) { return false; }
+	t_filestats2 get_stats2(uint32_t f, abort_callback &p_abort) { return m_File->get_stats2_(f, p_abort); }
+	void remove_tags(abort_callback &) { throw exception_tagging_unsupported(); }
+	void retag(const file_info &p_info, abort_callback &p_abort) { throw exception_tagging_unsupported(); }
 	static bool g_is_our_content_type(const char *p_content_type) { return false; }
-	void retag(const file_info &p_info, abort_callback &p_abort) {}
+	static const char * g_get_name() { return "MSU-1 PCM Player"; }
+	static GUID g_get_guid() {
+		static const GUID guid = { 0x3d21bfc0, 0x2b91, 0x4362, { 0x97, 0xe4, 0x8c, 0x14, 0x67, 0x85, 0xfe, 0xcd } };
+		return guid;
+	}
 };
 
 #endif /* __INPUT_SNESAPU___ */
