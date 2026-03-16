@@ -20,22 +20,22 @@ Note if your foobar installation is 32-bit or 64-bit and use the appropriate dll
 
 e.g.
 
-somedir\\
-|\`-foo_input_msu\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_input_msu.sln
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\`-...
-|\`-foobar2000-sdk\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_input_validators\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_sample\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000_component_client\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-helpers\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-helpers-mac\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-SDK\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-shared\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|\`-libPPUI\\
-|&nbsp;&nbsp;&nbsp;&nbsp;|\`-pfc\\
+somedir\\  
+|\`-foo_input_msu\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_input_msu.sln  
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\`-...  
+|\`-foobar2000-sdk\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_input_validators\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foo_sample\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-foobar2000_component_client\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-helpers\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-helpers-mac\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-SDK\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|\`-shared\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|\`-libPPUI\\  
+|&nbsp;&nbsp;&nbsp;&nbsp;|\`-pfc\\  
 
  - If you want to be able to debug and execute directly from Visual Studio, download the latest release of [foobar2000](http://www.foobar2000.org/download) and do a portable installation into the foo_input_msu\\foobar2000 directory
  - Be sure to set the project build configuration to x86, then build the solution
