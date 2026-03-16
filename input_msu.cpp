@@ -7,6 +7,9 @@
 // larger values cause seeking distortion [ms]
 static const uint32_t BUFFER_DURATION = 100;
 
+// MSU-1 PCM header size: 4 bytes magic + 4 bytes loop point
+static const uint32_t PCM_HEADER_SIZE = 8;
+
 input_msu::input_msu()
 {
 	m_PcmFilePos = 0;
@@ -55,7 +58,7 @@ void input_msu::open(service_ptr_t<file> p_filehint, const char *p_path, t_input
 */
 void input_msu::get_info(file_info &p_info, abort_callback &p_abort)
 {
-	p_info.set_length((m_PcmFileLength - 8.0) / (44100.0 * 4.0));
+	p_info.set_length((m_PcmFileLength - PCM_HEADER_SIZE) / (44100.0 * 4.0));
 	
 	p_info.info_set_int("samplerate", 44100);
 	p_info.info_set_int("channels", 2);
@@ -75,8 +78,8 @@ void input_msu::get_info(file_info &p_info, abort_callback &p_abort)
 */
 void input_msu::decode_initialize(unsigned int p_flags, abort_callback &p_abort)
 {
-	m_PcmFilePos = 8;
-	m_PcmFileLoop = (*((uint32_t *)(m_PcmFile.get_ptr() + 4)) * 4) + 8;
+	m_PcmFilePos = PCM_HEADER_SIZE;
+	m_PcmFileLoop = (*((uint32_t *)(m_PcmFile.get_ptr() + 4)) * 4) + PCM_HEADER_SIZE;
 }
 
 /**
@@ -93,7 +96,7 @@ bool input_msu::decode_run(audio_chunk &p_chunk, abort_callback &p_abort)
 
 	if (m_PcmFilePos >= m_PcmFileLength)
 	{
-		if (m_PcmFileLoop < m_PcmFileLength)
+		if (m_PcmFileLoop > PCM_HEADER_SIZE && m_PcmFileLoop < m_PcmFileLength)
 		{
 			m_PcmFilePos = m_PcmFileLoop;
 		}
@@ -130,7 +133,7 @@ void input_msu::decode_seek(double p_seconds, abort_callback &p_abort)
 	// compare desired seek pos with current pos
 	uint32_t NewPos = static_cast<uint32_t>(p_seconds * 4 * 44100) & ~0x0007;
 
-	m_PcmFilePos = NewPos + 8 <= m_PcmFileLength ? NewPos + 8 : m_PcmFileLength;
+	m_PcmFilePos = NewPos + PCM_HEADER_SIZE <= m_PcmFileLength ? NewPos + PCM_HEADER_SIZE : m_PcmFileLength;
 }
 
 static input_singletrack_factory_t<input_msu> g_input_msu_factory;
