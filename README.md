@@ -7,7 +7,7 @@ Implements basic playback and gapless looping
 # Installation
 
 Download foo_input_msu.dll and copy into your <foobar_user_config_dir>\user-components directory
-i.e. C:\Users\<username>\AppData\Roaming\foobar2000-v2\user-components\foo_input_msu\<put-dll-here>
+i.e. `C:\Users\<username>\AppData\Roaming\foobar2000-v2\user-components\foo_input_msu\` and put dll here  
 
 Note if your foobar installation is 32-bit or 64-bit and use the appropriate dll.
 
